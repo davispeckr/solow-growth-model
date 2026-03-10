@@ -1,6 +1,6 @@
 # Solow Growth Model Analysis
 
-This project analyzes the Solow growth model through both theoretical simulations and an empirical application using Penn World Table 11.0 data.
+This project analyzes the Solow growth model through theoretical simulations and an empirical application using Penn World Table 11.0 data.
 
 ## Project Overview
 
