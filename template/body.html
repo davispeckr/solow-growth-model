@@ -1,0 +1,113 @@
+<body>
+<div class="wrap">
+<div class="topo">
+<h1 data-i18n="titulo"></h1>
+<div class="langbar"><button class="lang active" data-lang="pt">Português</button><button class="lang" data-lang="en">English</button></div>
+</div>
+<p class="standfirst" data-i18n="standfirst"></p>
+<p class="byline"><a class="who" href="https://www.linkedin.com/in/davi-speck-ramos-a26079242" target="_blank" rel="noopener">Davi Speck Ramos</a><span class="who">Henrique Lana Moura</span></p>
+
+<div class="comoler" data-i18n="comoler"></div>
+
+<div class="controles">
+  <div class="grupo"><a href="#par-modelo" data-i18n="lbl-modelo"></a><div class="seg" id="cModelo"></div></div>
+  <div class="grupo largo"><a href="#par-amostra" data-i18n="lbl-amostra"></a><div class="seg" id="cAmostra"></div></div>
+  <div class="grupo"><a href="#par-gd" data-i18n="lbl-gd"></a><div class="seg" id="cGd"></div></div>
+</div>
+
+<div class="busca">
+  <svg class="lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+  <input id="q" type="search" autocomplete="off" spellcheck="false" aria-label="buscar país">
+  <ul class="sugest" id="sug" role="listbox"></ul>
+</div>
+
+<section class="pais" id="pais">
+  <div class="pais-topo"><h2 id="pNome">—</h2><span class="anosd" id="pAnos"></span></div>
+  <div class="trio">
+    <div><span data-i18n="obs"></span><b id="vObs">—</b><small data-i18n="obs-sub"></small></div>
+    <div><span data-i18n="prev"></span><b id="vPrev">—</b><small id="vPrevSub"></small></div>
+    <div id="cxDif"><span data-i18n="dif"></span><b id="vDif">—</b><small id="vDifSub"></small></div>
+  </div>
+  <div class="barra-topo"><span data-i18n="abaixo"></span><span data-i18n="acima"></span></div>
+  <div class="barra">
+    <div class="lado esq"><div class="trilho"></div><div class="fill b" id="fb"></div></div>
+    <div class="lado dir"><div class="trilho"></div><div class="fill a" id="fa"></div></div>
+  </div>
+  <div class="escala"><span>−75%</span><span>0</span><span>+300%</span></div>
+
+  <div class="duas">
+    <div class="bloco decomp">
+      <h3 data-i18n="h-decomp"></h3>
+      <p class="sub" data-i18n="sub-decomp"></p>
+      <div id="decomp"></div>
+    </div>
+    <div class="bloco">
+      <h3 data-i18n="h-dados-pais"></h3>
+      <p class="sub" data-i18n="sub-dados-pais"></p>
+      <table class="dados" id="tDados"></table>
+    </div>
+  </div>
+</section>
+
+<figure>
+  <p class="figtit" data-i18n="fig-mapa"></p>
+  <p class="figsub" data-i18n="sub-mapa"></p>
+  <svg id="mapa" role="img" aria-label="mapa-múndi"></svg>
+  <div class="legenda" id="leg"></div>
+</figure>
+
+<figure>
+  <p class="figtit" data-i18n="fig-disp"></p>
+  <p class="figsub" data-i18n="sub-disp"></p>
+  <svg id="disp" role="img" aria-label="renda prevista contra observada"></svg>
+</figure>
+
+<div class="ranks">
+  <div class="rank pos"><h3 data-i18n="h-acima"></h3><ol id="rPos"></ol></div>
+  <div class="rank neg"><h3 data-i18n="h-abaixo"></h3><ol id="rNeg"></ol></div>
+</div>
+
+<section class="coef">
+  <p class="cap" id="coefCap"></p>
+  <table id="tCoef"></table>
+  <p class="nota" data-i18n="nota-coef"></p>
+</section>
+
+<section class="rodape" id="notas">
+  <div>
+    <h2 data-i18n="h-sobre"></h2>
+    <p data-i18n="sobre-1"></p>
+    <p data-i18n="sobre-2"></p>
+    <h3 data-i18n="h-interp"></h3>
+    <p data-i18n="interp-1"></p>
+  </div>
+  <div>
+    <h2 data-i18n="h-metod"></h2>
+    <p data-i18n="metod-1"></p>
+    <div class="eqrow" data-eq="y^{*} = A\left(\frac{s}{n+g+\delta}\right)^{\frac{\alpha}{1-\alpha}}"></div>
+    <p data-i18n="metod-2"></p>
+    <div class="eqrow" data-eq="\ln y_i = \beta_0 + \beta_1 \ln s_i + \beta_2 \ln(n_i + g + \delta) + \varepsilon_i, \qquad \beta_1 = -\beta_2 = \frac{\alpha}{1-\alpha}"></div>
+    <p data-i18n="metod-3"></p>
+    <div class="eqrow" data-eq="\ln y_i = \beta_0 + \beta_1 \ln s_i + \beta_2 \ln(n_i + g + \delta) + \beta_3 \ln h_i + \varepsilon_i, \qquad \beta_3 = \frac{\beta}{1-\alpha}"></div>
+    <p data-i18n="metod-4"></p>
+    <div class="eqrow" data-eq="d_i = \frac{y_i}{\hat{y}_i} - 1 = e^{\hat{\varepsilon}_i} - 1"></div>
+    <p data-i18n="metod-5"></p>
+
+    <h2 data-i18n="h-params"></h2>
+    <p id="par-modelo" data-i18n="par-modelo"></p>
+    <p id="par-amostra" data-i18n="par-amostra"></p>
+    <p id="par-gd" data-i18n="par-gd"></p>
+
+    <h3 data-i18n="h-dados"></h3>
+    <p data-i18n="dados-1"></p>
+    <h3 data-i18n="h-refs"></h3>
+    <p class="ref">Feenstra, R. C., R. Inklaar e M. P. Timmer (2015). The Next Generation of the Penn World Table. <i>American Economic Review</i>, 105(10), 3150–3182.</p>
+    <p class="ref">Hall, R. E. e C. I. Jones (1999). Why Do Some Countries Produce So Much More Output per Worker than Others? <i>Quarterly Journal of Economics</i>, 114(1), 83–116.</p>
+    <p class="ref">Mankiw, N. G., D. Romer e D. N. Weil (1992). A Contribution to the Empirics of Economic Growth. <i>Quarterly Journal of Economics</i>, 107(2), 407–437.</p>
+    <p class="ref">Solow, R. M. (1956). A Contribution to the Theory of Economic Growth. <i>Quarterly Journal of Economics</i>, 70(1), 65–94.</p>
+    <div class="baixar"><button id="dl" data-i18n="btn-csv"></button></div>
+  </div>
+</section>
+<p class="fonte" data-i18n="fonte"></p>
+</div>
+<div class="tip" id="tip"></div>
