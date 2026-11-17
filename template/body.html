@@ -5,7 +5,6 @@
 <div class="langbar"><button class="lang active" data-lang="pt">Português</button><button class="lang" data-lang="en">English</button></div>
 </div>
 <p class="standfirst" data-i18n="standfirst"></p>
-<p class="byline"><a class="who" href="https://www.linkedin.com/in/davi-speck-ramos-a26079242" target="_blank" rel="noopener">Davi Speck Ramos</a><span class="who">Henrique Lana Moura</span></p>
 
 <div class="comoler" data-i18n="comoler"></div>
 
@@ -15,10 +14,11 @@
   <div class="grupo"><a href="#par-gd" data-i18n="lbl-gd"></a><div class="seg" id="cGd"></div></div>
 </div>
 
-<div class="busca">
+<div class="busca combo" id="cbPais">
   <svg class="lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-  <input id="q" type="search" autocomplete="off" spellcheck="false" aria-label="buscar país">
-  <ul class="sugest" id="sug" role="listbox"></ul>
+  <input type="text" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-label="país">
+  <button class="abre" type="button" tabindex="-1" aria-label="lista de países"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+  <ul class="sugest" role="listbox"></ul>
 </div>
 
 <section class="pais" id="pais">
@@ -52,13 +52,31 @@
 <figure>
   <p class="figtit" data-i18n="fig-mapa"></p>
   <p class="figsub" data-i18n="sub-mapa"></p>
-  <svg id="mapa" role="img" aria-label="mapa-múndi"></svg>
+  <div class="mapbox" id="mapbox">
+    <svg id="mapa" role="img" aria-label="mapa-múndi"></svg>
+    <div class="zoom">
+      <button type="button" id="zIn" aria-label="ampliar">+</button>
+      <button type="button" id="zOut" aria-label="reduzir">−</button>
+      <button type="button" id="zReset" aria-label="enquadrar"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+      <button type="button" id="zFull" aria-label="tela cheia"><svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
+    </div>
+    <p class="dica" data-i18n="dica-zoom"></p>
+  </div>
   <div class="legenda" id="leg"></div>
 </figure>
 
 <figure>
   <p class="figtit" data-i18n="fig-disp"></p>
   <p class="figsub" data-i18n="sub-disp"></p>
+  <div class="destaques">
+    <div class="busca combo mini" id="cbDisp">
+      <svg class="lupa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      <input type="text" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-label="destacar país">
+      <button class="abre" type="button" tabindex="-1" aria-label="lista de países"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+      <ul class="sugest" role="listbox"></ul>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
   <svg id="disp" role="img" aria-label="renda prevista contra observada"></svg>
 </figure>
 
@@ -67,11 +85,6 @@
   <div class="rank neg"><h3 data-i18n="h-abaixo"></h3><ol id="rNeg"></ol></div>
 </div>
 
-<section class="coef">
-  <p class="cap" id="coefCap"></p>
-  <table id="tCoef"></table>
-  <p class="nota" data-i18n="nota-coef"></p>
-</section>
 
 <section class="rodape" id="notas">
   <div>

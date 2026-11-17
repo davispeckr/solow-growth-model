@@ -3,13 +3,14 @@ const I18N={
  pt:{
   titulo:"Modelo de Solow: renda observada e prevista",
   standfirst:'Este painel aplica o teste de <a href="https://doi.org/10.2307/2118477" target="_blank" rel="noopener">Mankiw, Romer e Weil (1992)</a> aos dados da Penn World Table 11.0. Para cada país, compara a renda per capita média de 1950 a 2023 com a renda que o modelo de Solow, ou sua versão com capital humano, prevê a partir do investimento, do crescimento populacional e da escolaridade.',
-  comoler:'<b>Como ler.</b> A renda prevista é a de um país com o investimento, o crescimento populacional e, no modelo aumentado, o capital humano daquele país, mas com o nível tecnológico médio da amostra. A diferença entre a renda observada e a prevista é o que o modelo não explica: em azul, países mais ricos do que o modelo prevê; em vermelho, mais pobres. Na teoria, essa diferença é a tecnologia de cada país.',
+  comoler:'<b>Como ler.</b> A renda prevista é a de um país com o investimento, o crescimento populacional e, no modelo aumentado, o capital humano daquele país, mas com o nível tecnológico médio da amostra. A diferença entre a renda observada e a prevista é o que o modelo não explica: em azul, países mais ricos do que o modelo prevê; em vermelho, mais pobres; em amarelo, perto do previsto. Países em branco não têm dados. Na teoria, essa diferença é a tecnologia de cada país.',
   "lbl-modelo":"Modelo","lbl-amostra":"Amostra de estimação","lbl-gd":"g + δ",
   modelo:["Solow","Solow aumentado"],
   amostra:["Completa","Sem petróleo","Sem petróleo e microestados","Com capital humano","Com capital humano, sem petróleo"],
   amostraCurta:{completa:"amostra completa",semOil:"sem petróleo",semOilMicro:"sem petróleo e microestados",hc:"com capital humano",hcSemOil:"com capital humano, sem petróleo"},
   modeloNome:{solow:"Modelo de Solow",aumentado:"Modelo de Solow aumentado"},
-  busca:"Buscar país: Brasil, Japão, Nigéria…",
+  busca:"Escolha ou digite um país",destacar:"Destacar país no gráfico",remover:"remover",
+  "dica-zoom":"Arraste para mover · Ctrl + rolagem ou os botões para ampliar",
   obs:"Renda observada","obs-sub":"média anual por pessoa, em PPC",
   prev:"Renda prevista",prevSub:m=>m,
   dif:"Diferença",difPos:"acima do previsto",difNeg:"abaixo do previsto",
@@ -27,10 +28,10 @@ const I18N={
   prevFora:"previsão fora da amostra",
   anosTxt:(a,b,n)=>`dados de ${a} a ${b} · ${n} anos`,
   "fig-mapa":"Diferença entre a renda observada e a prevista",
-  "sub-mapa":"Clique em um país para selecioná-lo. Tons mais claros: países fora da amostra de estimação, com previsão fora da amostra.",
+  "sub-mapa":"Clique em um país para selecioná-lo. Países hachurados estão fora da amostra de estimação e recebem previsão fora da amostra. Em branco, países sem dados.",
   legAbaixo:"abaixo do previsto",legAcima:"acima do previsto",legFora:"fora da amostra",legSem:"sem dado",
   "fig-disp":"Renda prevista contra renda observada",
-  "sub-disp":"Países da amostra de estimação, em logaritmo. Sobre a linha tracejada, a renda observada é igual à prevista.",
+  "sub-disp":"Países da amostra de estimação, em logaritmo. Sobre a linha tracejada, a renda observada é igual à prevista. Acima dela, o país é mais rico do que o modelo prevê.",
   eixoX:"ln da renda prevista",eixoY:"ln da renda observada",
   "h-acima":"Mais ricos do que o modelo prevê","h-abaixo":"Mais pobres do que o modelo prevê",
   coefCap:(m,a,g)=>`${m} · ${a} · g + δ = ${g}`,
@@ -60,13 +61,14 @@ const I18N={
  en:{
   titulo:"Solow model: observed and predicted income",
   standfirst:'This dashboard applies the <a href="https://doi.org/10.2307/2118477" target="_blank" rel="noopener">Mankiw, Romer and Weil (1992)</a> test to Penn World Table 11.0 data. For each country, it compares average income per capita from 1950 to 2023 with the income the Solow model, or its human capital version, predicts from investment, population growth and schooling.',
-  comoler:'<b>How to read it.</b> Predicted income is that of a country with the investment, population growth and, in the augmented model, human capital of that country, but with the sample\'s average technology level. The gap between observed and predicted income is what the model does not explain: blue for countries richer than predicted, red for poorer. In theory, this gap is each country\'s technology.',
+  comoler:'<b>How to read it.</b> Predicted income is that of a country with the investment, population growth and, in the augmented model, human capital of that country, but with the sample\'s average technology level. The gap between observed and predicted income is what the model does not explain: blue for countries richer than predicted, red for poorer, yellow for close to prediction. White countries have no data. In theory, this gap is each country\'s technology.',
   "lbl-modelo":"Model","lbl-amostra":"Estimation sample","lbl-gd":"g + δ",
   modelo:["Solow","Augmented Solow"],
   amostra:["Full","Non-oil","Non-oil, no microstates","With human capital","With human capital, non-oil"],
   amostraCurta:{completa:"full sample",semOil:"non-oil",semOilMicro:"non-oil, no microstates",hc:"with human capital",hcSemOil:"with human capital, non-oil"},
   modeloNome:{solow:"Solow model",aumentado:"Augmented Solow model"},
-  busca:"Search a country: Brazil, Japan, Nigeria…",
+  busca:"Pick or type a country",destacar:"Highlight a country in the chart",remover:"remove",
+  "dica-zoom":"Drag to pan · Ctrl + scroll or the buttons to zoom",
   obs:"Observed income","obs-sub":"annual average per person, PPP",
   prev:"Predicted income",prevSub:m=>m,
   dif:"Gap",difPos:"above prediction",difNeg:"below prediction",
@@ -84,10 +86,10 @@ const I18N={
   prevFora:"out-of-sample prediction",
   anosTxt:(a,b,n)=>`data from ${a} to ${b} · ${n} years`,
   "fig-mapa":"Gap between observed and predicted income",
-  "sub-mapa":"Click a country to select it. Lighter shades: countries outside the estimation sample, with out-of-sample predictions.",
+  "sub-mapa":"Click a country to select it. Hatched countries are outside the estimation sample and get out-of-sample predictions. White: no data.",
   legAbaixo:"below prediction",legAcima:"above prediction",legFora:"outside sample",legSem:"no data",
   "fig-disp":"Predicted versus observed income",
-  "sub-disp":"Countries in the estimation sample, in logs. On the dashed line, observed income equals predicted income.",
+  "sub-disp":"Countries in the estimation sample, in logs. On the dashed line, observed income equals predicted income. Above it, the country is richer than predicted.",
   eixoX:"log predicted income",eixoY:"log observed income",
   "h-acima":"Richer than the model predicts","h-abaixo":"Poorer than the model predicts",
   coefCap:(m,a,g)=>`${m} · ${a} · g + δ = ${g}`,
@@ -161,23 +163,38 @@ function controles(){
   seg("cGd",[["065",LANG==="en"?"0.065":"0,065"],["050",LANG==="en"?"0.05":"0,05"]],sel.gd,v=>{sel.gd=v;tudo()});
 }
 
-/* ---------- busca ---------- */
+/* ---------- seletor de pais (escolher ou digitar) ---------- */
 const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
-let sugIdx=-1, sugLista=[];
-function buscar(q){
-  const n=norm(q.trim()); const ul=$("sug");
-  if(!n){ul.style.display="none";return}
-  sugLista=D.paises.filter(p=>norm(p.pt).includes(n)||norm(p.en).includes(n)||p.iso.toLowerCase()===n)
-    .sort((a,b)=>{const sa=norm(nome(a)).startsWith(n)?0:1,sb=norm(nome(b)).startsWith(n)?0:1;
-      return sa-sb||nome(a).localeCompare(nome(b),loc())}).slice(0,8);
-  sugIdx=sugLista.length?0:-1;
-  ul.innerHTML=sugLista.map((p,i)=>`<li role="option" data-iso="${p.iso}" aria-selected="${i===sugIdx}">${nome(p)}<span>${p.iso}</span></li>`).join("");
-  ul.style.display=sugLista.length?"block":"none";
-  ul.querySelectorAll("li").forEach(li=>li.onmousedown=e=>{e.preventDefault();escolher(li.dataset.iso)});
+function combo(root,onPick,limpar){
+  const inp=root.querySelector("input"), ul=root.querySelector("ul"), btn=root.querySelector(".abre");
+  let lista=[], idx=-1;
+  const fechar=()=>{ul.style.display="none";inp.setAttribute("aria-expanded","false")};
+  function abrir(q){
+    const n=norm(q||"");
+    lista=D.paises.filter(p=>!n||norm(p.pt).includes(n)||norm(p.en).includes(n)||p.iso.toLowerCase()===n)
+      .sort((a,b)=>{const sa=n&&norm(nome(a)).startsWith(n)?0:1,sb=n&&norm(nome(b)).startsWith(n)?0:1;
+        return sa-sb||nome(a).localeCompare(nome(b),loc())});
+    idx=lista.length?0:-1;
+    ul.innerHTML=lista.map((p,i)=>`<li role="option" data-iso="${p.iso}" aria-selected="${i===idx}">${nome(p)}<span>${p.iso}</span></li>`).join("");
+    ul.style.display=lista.length?"block":"none"; inp.setAttribute("aria-expanded",String(!!lista.length)); ul.scrollTop=0;
+    ul.querySelectorAll("li").forEach(li=>li.onmousedown=e=>{e.preventDefault();pegar(li.dataset.iso)});
+  }
+  function marca(){ul.querySelectorAll("li").forEach((li,i)=>{li.setAttribute("aria-selected",String(i===idx));if(i===idx)li.scrollIntoView({block:"nearest"})})}
+  function pegar(iso){fechar();inp.blur();onPick(iso);if(limpar)inp.value=""}
+  inp.addEventListener("focus",()=>{inp.select();abrir("")});
+  inp.addEventListener("input",()=>abrir(inp.value));
+  inp.addEventListener("keydown",e=>{
+    if(e.key==="ArrowDown"){if(ul.style.display!=="block")abrir(inp.value);idx=Math.min(idx+1,lista.length-1);marca();e.preventDefault()}
+    else if(e.key==="ArrowUp"){idx=Math.max(idx-1,0);marca();e.preventDefault()}
+    else if(e.key==="Enter"&&idx>=0){pegar(lista[idx].iso)}
+    else if(e.key==="Escape"){fechar();inp.blur()}});
+  inp.addEventListener("blur",()=>setTimeout(()=>{fechar();if(!limpar)inp.value=nome(P[ISO])},120));
+  btn.addEventListener("mousedown",e=>{e.preventDefault();if(ul.style.display==="block")fechar();else{inp.focus()}});
+  return{inp};
 }
-function escolher(iso){ISO=iso;$("q").value="";$("sug").style.display="none";pais();marcarMapa();dispersao();
-  $("pais").scrollIntoView({behavior:"smooth",block:"start"})}
-function marcaSug(){$("sug").querySelectorAll("li").forEach((li,i)=>li.setAttribute("aria-selected",String(i===sugIdx)))}
+let cbPais,cbDisp;
+function escolher(iso,rolar){ISO=iso;cbPais.inp.value=nome(P[iso]);pais();marcarMapa();dispersao();
+  if(rolar!==false)$("pais").scrollIntoView({behavior:"smooth",block:"start"})}
 
 /* ---------- cartao do pais ---------- */
 function rankDe(iso){
@@ -235,18 +252,27 @@ function tabelaPais(p,dentro){
 }
 
 /* ---------- cores ---------- */
-const corDif=d=>d==null?"var(--semdado)":d3.interpolateRdBu(.5+Math.max(-1,Math.min(1,Math.log(1+d)/Math.log(4)))/2);
+const PAL=d3.piecewise(d3.interpolateLab,["#6B1526","#B23A2E","#E2804A","#E8BE5E","#8FBCA6","#3F7CB3","#1E3F78"]);
+const tDif=d=>.5+Math.max(-1,Math.min(1,Math.log(1+d)/Math.log(4)))/2;
+const corDif=d=>d==null?"var(--semdado)":PAL(tDif(d));
 
 /* ---------- mapa ---------- */
-const MW=1100, MH=520;
-let geoPaths=null;
+const MW=1100, MH=560;
+let geoPaths=null, hachPaths=null, gMapa=null, pinG=null, zoomer=null, zT=d3.zoomIdentity, proj=null, centro={};
 function montarMapa(){
   const fc=topojson.feature(GEO,GEO.objects.countries);
   fc.features=fc.features.filter(f=>f.id!=="010");
-  const proj=d3.geoNaturalEarth1().fitExtent([[0,4],[MW,MH-4]],fc);
+  proj=d3.geoNaturalEarth1().fitExtent([[8,8],[MW-8,MH-8]],{type:"Sphere"});
   const path=d3.geoPath(proj);
+  fc.features.forEach(f=>{let g=f.geometry;
+    if(g.type==="MultiPolygon"){let best=null,ba=-1;g.coordinates.forEach(c=>{const pol={type:"Polygon",coordinates:c},ar=d3.geoArea(pol);if(ar>ba){ba=ar;best=pol}});g=best}
+    centro[f.id]=path.centroid(g)});
   const svg=d3.select("#mapa").attr("viewBox",`0 0 ${MW} ${MH}`);
-  geoPaths=svg.append("g").selectAll("path").data(fc.features).join("path")
+  svg.append("defs").html(`<pattern id="hach" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#fff" stroke-width="2.2" stroke-opacity=".75"/></pattern>`);
+  gMapa=svg.append("g");
+  gMapa.append("path").attr("class","oceano").attr("d",path({type:"Sphere"}));
+  gMapa.append("path").attr("class","grat").attr("d",path(d3.geoGraticule10()));
+  geoPaths=gMapa.append("g").selectAll("path").data(fc.features).join("path")
     .attr("class","pais-geo").attr("d",path)
     .on("mousemove",(e,f)=>{const p=NUM[f.id];
       const nm=p?nome(p):f.properties.name; let h=`<b>${nm}</b>`;
@@ -256,30 +282,50 @@ function montarMapa(){
       else h+=`<br>${T().legSem}`;
       tip(e,h)})
     .on("mouseleave",()=>tip())
-    .on("click",(e,f)=>{const p=NUM[f.id];if(p)escolher(p.iso)});
+    .on("click",(e,f)=>{const p=NUM[f.id];if(p)escolher(p.iso,false)});
+  hachPaths=gMapa.append("g").selectAll("path").data(fc.features).join("path")
+    .attr("class","hach").attr("d",path).attr("fill","url(#hach)");
+  pinG=svg.append("g").attr("class","pin").style("pointer-events","none");
+  pinG.append("circle").attr("r",4.5); pinG.append("text").attr("x",9).attr("y",4.5);
+  zoomer=d3.zoom().scaleExtent([1,10]).translateExtent([[0,0],[MW,MH]]).extent([[0,0],[MW,MH]])
+    .filter(e=>e.type==="wheel"?(e.ctrlKey||e.metaKey||!!document.fullscreenElement):!e.button)
+    .on("zoom",e=>{zT=e.transform;gMapa.attr("transform",zT);posPin()});
+  svg.call(zoomer);
+  const z=k=>svg.transition().duration(350).call(zoomer.scaleBy,k);
+  $("zIn").onclick=()=>z(1.6); $("zOut").onclick=()=>z(1/1.6);
+  $("zReset").onclick=()=>svg.transition().duration(450).call(zoomer.transform,d3.zoomIdentity);
+  $("zFull").onclick=()=>{const m=$("mapbox");document.fullscreenElement?document.exitFullscreen():m.requestFullscreen&&m.requestFullscreen()};
 }
+function posPin(){const p=P[ISO], c=p&&p.num?centro[p.num]:null;
+  if(!c){pinG.style("display","none");return}
+  const [x,y]=zT.apply(c); pinG.style("display",null).attr("transform",`translate(${x},${y})`);
+  pinG.select("text").text(nome(p)).attr("text-anchor",x>MW-160?"end":"start").attr("x",x>MW-160?-9:9)}
 function pintarMapa(){
   const m=membros();
   geoPaths.attr("fill",f=>{const p=NUM[f.id];return p?corDif(dif(p)):"var(--semdado)"})
-    .attr("fill-opacity",f=>{const p=NUM[f.id];return p&&!m.has(p.iso)?.38:1});
+    .classed("sd",f=>{const p=NUM[f.id];return !p||dif(p)==null});
+  hachPaths.style("display",f=>{const p=NUM[f.id];return p&&!m.has(p.iso)&&dif(p)!=null?null:"none"});
   marcarMapa();
-  const r=d3.range(0,1.0001,.05).map(t=>d3.interpolateRdBu(t)).join(",");
+  const r=d3.range(0,1.0001,.05).map(t=>PAL(t)).join(",");
   $("leg").innerHTML=`<span>${T().legAbaixo}</span><span>−75%</span><span class="rampa" style="background:linear-gradient(90deg,${r})"></span><span>+300%</span><span>${T().legAcima}</span>`+
-    `<span style="margin-left:14px"><span class="sw" style="background:${d3.interpolateRdBu(.8)};opacity:.38"></span>${T().legFora}</span>`+
-    `<span><span class="sw" style="background:var(--semdado)"></span>${T().legSem}</span>`;
+    `<span style="margin-left:14px"><span class="sw" style="background:repeating-linear-gradient(45deg,${PAL(.7)} 0 3px,#fff 3px 5px)"></span>${T().legFora}</span>`+
+    `<span><span class="sw" style="background:#fff;border:1px solid #D6DBE1"></span>${T().legSem}</span>`;
 }
-function marcarMapa(){
-  geoPaths.classed("sel",f=>NUM[f.id]&&NUM[f.id].iso===ISO);
-  geoPaths.filter(".sel").raise();
-}
+function marcarMapa(){posPin()}
 
 /* ---------- dispersao ---------- */
-const SW=1100, SH=460, SPd={l:52,r:20,t:14,b:44};
+const SW=1100, SH=500, SPd={l:52,r:24,t:14,b:44};
+let HL=["BRA","USA","CHN","IND","JPN","DEU","GBR","FRA","ARG","MEX","ZAF","NGA","KOR","RUS","IDN","CHL"];
+function chips(){
+  $("chips").innerHTML=HL.map(iso=>`<button type="button" data-iso="${iso}" class="${iso===ISO?"atual":""}" title="${T().remover}">${nome(P[iso])}<span>×</span></button>`).join("");
+  $("chips").querySelectorAll("button").forEach(b=>b.onclick=()=>{HL=HL.filter(x=>x!==b.dataset.iso);dispersao()});
+}
 function dispersao(){
   const sp=SP(), m=membros();
   const pts=D.paises.filter(p=>m.has(p.iso)).map(p=>({p,x:lnPrev(p,sp),y:p.ly}));
-  const selP=P[ISO], selX=lnPrev(selP,sp);
-  const all=pts.concat(selX==null?[]:[{x:selX,y:selP.ly}]);
+  const destaque=new Set([...HL,ISO]);
+  const extras=[...destaque].filter(i=>!m.has(i)).map(i=>({p:P[i],x:lnPrev(P[i],sp),y:P[i].ly,fora:true})).filter(d=>d.x!=null);
+  const all=pts.concat(extras);
   const lo=Math.floor(Math.min(...all.map(d=>Math.min(d.x,d.y)))*2)/2-.1;
   const hi=Math.ceil(Math.max(...all.map(d=>Math.max(d.x,d.y)))*2)/2+.1;
   const X=v=>SPd.l+(v-lo)/(hi-lo)*(SW-SPd.l-SPd.r), Y=v=>SPd.t+(hi-v)/(hi-lo)*(SH-SPd.t-SPd.b);
@@ -290,15 +336,29 @@ function dispersao(){
   g+=`<line class="diag" x1="${X(lo)}" y1="${Y(lo)}" x2="${X(hi)}" y2="${Y(hi)}"/>`;
   g+=`<text class="eixo t" x="${(SW+SPd.l)/2}" y="${SH-6}" text-anchor="middle">${T().eixoX}</text>`;
   g+=`<text class="eixo t" transform="translate(13,${(SH-SPd.b+SPd.t)/2}) rotate(-90)" text-anchor="middle">${T().eixoY}</text>`;
-  pts.forEach(d=>{if(d.p.iso===ISO)return;
-    g+=`<circle class="ponto" data-iso="${d.p.iso}" cx="${X(d.x).toFixed(1)}" cy="${Y(d.y).toFixed(1)}" r="4.6" fill="${corDif(Math.exp(d.y-d.x)-1)}" fill-opacity=".9" stroke="#fff" stroke-width=".7"/>`});
-  if(selX!=null){const fora=!m.has(ISO);
-    g+=`<circle class="ponto sel" data-iso="${ISO}" cx="${X(selX)}" cy="${Y(selP.ly)}" r="7" fill="${fora?"#fff":corDif(Math.exp(selP.ly-selX)-1)}"/>`+
-       `<text class="lbl-sel" x="${X(selX)+11}" y="${Y(selP.ly)+4}">${nome(selP)}</text>`}
+  pts.forEach(d=>{if(destaque.has(d.p.iso))return;
+    g+=`<circle class="ponto" data-iso="${d.p.iso}" cx="${X(d.x).toFixed(1)}" cy="${Y(d.y).toFixed(1)}" r="4.4" fill="${corDif(Math.exp(d.y-d.x)-1)}" fill-opacity=".55" stroke="#fff" stroke-width=".6"/>`});
+  // destaques e rotulos sem sobreposicao
+  const hs=pts.filter(d=>destaque.has(d.p.iso)).concat(extras).map(d=>({...d,cx:X(d.x),cy:Y(d.y)}));
+  const caixas=[], ocupa=(b)=>caixas.some(c=>b.x<c.x+c.w&&b.x+b.w>c.x&&b.y<c.y+c.h&&b.y+b.h>c.y);
+  hs.forEach(d=>caixas.push({x:d.cx-7,y:d.cy-7,w:14,h:14}));
+  let labs="";
+  hs.sort((a,b)=>(b.p.iso===ISO)-(a.p.iso===ISO)).forEach(d=>{
+    const txt=nome(d.p), w=txt.length*6.6+4, h=14;
+    const cand=[[10,4],[-10-w,4],[-w/2,-11],[-w/2,19],[10,-8],[10,16],[-10-w,-8],[-10-w,16]];
+    let best=cand[0];
+    for(const [dx,dy] of cand){const b={x:d.cx+dx,y:d.cy+dy-h+3,w,h};if(b.x>SPd.l&&b.x+w<SW&&!ocupa(b)){best=[dx,dy];break}}
+    caixas.push({x:d.cx+best[0],y:d.cy+best[1]-h+3,w,h});
+    const sel=d.p.iso===ISO;
+    labs+=`<text class="${sel?"lbl-sel":"lbl-disp"}" x="${(d.cx+best[0]).toFixed(1)}" y="${(d.cy+best[1]).toFixed(1)}">${txt}</text>`});
+  hs.forEach(d=>{const sel=d.p.iso===ISO, c=corDif(Math.exp(d.y-d.x)-1);
+    g+=`<circle class="ponto" data-iso="${d.p.iso}" cx="${d.cx.toFixed(1)}" cy="${d.cy.toFixed(1)}" r="${sel?8:6}" fill="${d.fora?"#fff":c}" stroke="${sel?"var(--ink)":d.fora?c:"#fff"}" stroke-width="${sel?2.2:d.fora?2:1.2}"/>`});
+  g+=labs;
   const svg=$("disp"); svg.setAttribute("viewBox",`0 0 ${SW} ${SH}`); svg.innerHTML=g;
   svg.querySelectorAll(".ponto").forEach(c=>{const p=P[c.dataset.iso];
     c.onmousemove=e=>{const l=lnPrev(p);tip(e,`<b>${nome(p)}</b><br>${T().obs}: ${usd(p.y)}<br>${T().prev}: ${usd(Math.exp(l))}<br>${T().dif}: ${pct(dif(p))}`)};
-    c.onmouseleave=()=>tip(); c.onclick=()=>escolher(p.iso)});
+    c.onmouseleave=()=>tip(); c.onclick=()=>{if(!HL.includes(p.iso))HL.push(p.iso);escolher(p.iso,false)}});
+  chips();
 }
 
 /* ---------- ranking ---------- */
@@ -309,18 +369,6 @@ function ranking(){
   $("rPos").innerHTML=li(arr.slice(0,8),i=>i+1);
   $("rNeg").innerHTML=li(arr.slice(-8).reverse(),i=>arr.length-i);
   document.querySelectorAll(".rank li").forEach(l=>l.onclick=()=>escolher(l.dataset.iso));
-}
-
-/* ---------- coeficientes ---------- */
-function coeficientes(){
-  const sp=SP(), c=sp.coefs, R=T().coefRows, f3=v=>v==null?"":(v<0?"−":"")+fmtN(Math.abs(v),3);
-  $("coefCap").textContent=T().coefCap(T().modeloNome[sel.modelo],T().amostraCurta[sel.amostra],sel.gd==="065"?fmtN(.065,3):fmtN(.05,2));
-  const par=k=>c[k]?`<tr><td><i>${R[k]}</i></td><td>${f3(c[k].b)}${c[k].st}</td></tr><tr class="se"><td></td><td>(${fmtN(c[k].se,3)})</td></tr>`:"";
-  let h=`<tr class="t"><td></td><td></td></tr>`+par("s")+par("ngd")+par("h")+par("c").replace("<i>","").replace("</i>","");
-  h+=`<tr class="m"><td>${R.N}</td><td>${sp.N}</td></tr><tr><td>${R.R2}</td><td>${fmtN(sp.R2,3)}</td></tr>`+
-     `<tr><td>${R.p}</td><td>${fmtN(sp.p,3)}</td></tr><tr${sp.beta==null?' class="b"':""}><td>${R.alpha}</td><td>${fmtN(sp.alpha,3)}</td></tr>`;
-  if(sp.beta!=null)h+=`<tr class="b"><td>${R.beta}</td><td>${fmtN(sp.beta,3)}</td></tr>`;
-  $("tCoef").innerHTML=h;
 }
 
 /* ---------- tooltip ---------- */
@@ -344,24 +392,19 @@ function baixar(){
 function textos(){
   document.documentElement.lang=LANG==="en"?"en":"pt-BR";
   document.querySelectorAll("[data-i18n]").forEach(el=>{const v=T()[el.dataset.i18n];if(typeof v==="string")el.innerHTML=v});
-  $("q").placeholder=T().busca;
+  cbPais.inp.placeholder=T().busca; cbPais.inp.value=nome(P[ISO]); cbDisp.inp.placeholder=T().destacar;
   document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.dataset.lang===LANG));
   eqs();
 }
 function eqs(){if(!window.katex)return;
   document.querySelectorAll("[data-eq]").forEach(el=>katex.render(el.dataset.eq,el,{displayMode:el.classList.contains("eqrow"),throwOnError:false}))}
 
-function tudo(){controles();pais();pintarMapa();dispersao();ranking();coeficientes()}
+function tudo(){controles();pais();pintarMapa();dispersao();ranking()}
 
 /* ---------- inicio ---------- */
 document.querySelectorAll(".lang").forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;textos();tudo()});
-$("q").addEventListener("input",e=>buscar(e.target.value));
-$("q").addEventListener("keydown",e=>{
-  if(e.key==="ArrowDown"){sugIdx=Math.min(sugIdx+1,sugLista.length-1);marcaSug();e.preventDefault()}
-  else if(e.key==="ArrowUp"){sugIdx=Math.max(sugIdx-1,0);marcaSug();e.preventDefault()}
-  else if(e.key==="Enter"&&sugIdx>=0){escolher(sugLista[sugIdx].iso)}
-  else if(e.key==="Escape"){$("sug").style.display="none"}});
-$("q").addEventListener("blur",()=>setTimeout(()=>$("sug").style.display="none",150));
+cbPais=combo($("cbPais"),iso=>escolher(iso),false);
+cbDisp=combo($("cbDisp"),iso=>{if(!HL.includes(iso))HL.push(iso);dispersao()},true);
 $("dl").onclick=baixar;
 textos(); montarMapa(); tudo();
 window.addEventListener("load",eqs);
