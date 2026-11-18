@@ -58,6 +58,19 @@ Human capital is measured by the Penn World Table `hc` index, which combines ave
 
 In the sample without oil exporters, adding human capital lowers the coefficient on investment from 1.50 to 0.85 and the implied capital share from 0.65 to 0.45, while the $R^2$ rises from 0.63 to 0.79. The restriction that the coefficients on $\log(s)$ and $\log(n+g+\delta)$ sum to zero is not rejected (p = 0.28). The coefficient on $\log(h)$, however, is about 2.3, far above the value of 0.5 implied by $\alpha = \beta = 1/3$, so the `hc` index should not be read as a structural measure of $\beta$: it captures labor efficiency from schooling and is correlated with the omitted technology term.
 
+## Dashboard
+
+An interactive dashboard compares, for each country, observed income per capita with the income predicted by the Solow model or the augmented model. It includes a country search, a world map colored by the gap between observed and predicted income, a predicted-versus-observed scatter, rankings and the regression table for each specification (model, estimation sample and $g + \delta$).
+
+**Dashboard:** https://davispeckr.github.io/solow-growth-model/
+
+```bash
+pip install -r requirements.txt
+python build.py            # estimates all specifications and writes docs/index.html
+```
+
+`build.py` rebuilds the notebook sample, estimates the 14 specifications and aborts if the baseline does not reproduce the paper's coefficients. The page is a single file with the data embedded; GitHub Pages serves it from `docs/`.
+
 ## Data
 
 The empirical section uses data from **Penn World Table 11.0**.
@@ -75,6 +88,9 @@ Main variables used:
 - `Solow.ipynb` — main notebook with simulations and empirical analysis  
 - `pwt.csv` — dataset used in the empirical section  
 - `pwt_hc.csv` — human capital index (`hc`) from Penn World Table 11.0, extracted from `pwt110.dta`  
+- `build.py` — dashboard pipeline  
+- `template/` — dashboard templates (`head.html`, `body.html`, `script.js`), country names (`paises.csv`) and world map (`world-110m.json`, Natural Earth via world-atlas)  
+- `docs/` — published dashboard (`index.html`) and country-level results (`solow.csv`)  
 
 ## References
 
